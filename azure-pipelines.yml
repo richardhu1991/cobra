@@ -9,6 +9,8 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
+
+
 steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
@@ -17,3 +19,15 @@ steps:
     echo Add other tasks to build, test, and deploy your project.
     echo See https://aka.ms/yaml
   displayName: 'Run a multi-line script'
+
+- script: |
+    pwd
+    mkdir cache
+    cd ./cache
+    echo 'abc' > someCacheFile
+
+- task: Cache@2
+  inputs:
+    key: 'myCache'
+    path: '/cache'
+  displayName: 'cache test'
