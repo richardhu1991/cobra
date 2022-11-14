@@ -22,6 +22,7 @@ jobs:
         notifyUsers: 416482742@qq.com
         instructions: 'Please validate the build configuration and resume'
         onTimeout: 'resume'
+    - script: echo hello!
   - job: job2
     steps:
     - script: echo Hello, world!
