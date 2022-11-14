@@ -15,19 +15,7 @@ steps:
 - script: echo Hello, world!
   displayName: 'Run a one-line script'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
 
-- script: |
-    pwd
-    mkdir cache
-    cd ./cache
-    echo 'abc' > someCacheFile
-
-- task: Cache@2
+- task: ManualValidation@0
   inputs:
-    key: 'myCache'
-    path: '/cache'
-  displayName: 'cache test'
+    notifyUsers: 'richardhu1991@gmail.com'
