@@ -14,13 +14,12 @@ stages:
   - job: BuildJob
     steps:
     - script: echo Building!
-  dependsOn: [Deploy]
 - stage: Test1
   jobs:
   - job: TestJob
     steps:
     - script: echo Test!
-  dependsOn: [Build]
+  dependsOn: [Build,Deploy]
 - stage: Test2
   jobs:
   - job: TestOnWindows
