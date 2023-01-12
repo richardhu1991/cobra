@@ -9,20 +9,38 @@ trigger:
 pool:
   vmImage: ubuntu-latest
 
-
-jobs:
-  - job: waitForValidation
-    displayName: Wait for external validation
-    pool: server
-    timeoutInMinutes: 4320 # job times out in 3 days
+stages:
+- stage: Build
+  jobs:
+  - job: BuildJob
     steps:
-    - task: ManualValidation@0
-      timeoutInMinutes: 1440 # task times out in 1 day
-      inputs:
-        notifyUsers: 416482742@qq.com
-        instructions: 'Please validate the build configuration and resume'
-        onTimeout: 'resume'
-  - job: job2
+    - script: echo Building!
+- stage: Test
+  jobs:
+  - job: TestOnWindows
     steps:
-    - script: echo Hello, world!
-    displayName: 'Run a one-line script'
+    - script: echo Testing on Windows!
+  - job: TestOnLinux
+    steps:
+    - script: echo Testing on Linux!
+- stage: Deploy
+  jobs:
+  - job: Deploy
+    steps:
+    - script: echo Deploying the code!
+# jobs:
+#   - job: waitForValidation
+#     displayName: Wait for external validation
+#     pool: server
+#     timeoutInMinutes: 4320 # job times out in 3 days
+#     steps:
+#     - task: ManualValidation@0
+#       timeoutInMinutes: 1440 # task times out in 1 day
+#       inputs:
+#         notifyUsers: 416482742@qq.com
+#         instructions: 'Please validate the build configuration and resume'
+#         onTimeout: 'resume'
+#   - job: job2
+#     steps:
+#     - script: echo Hello, world!
+#     displayName: 'Run a one-line script'
