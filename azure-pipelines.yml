@@ -35,7 +35,7 @@ stages:
   - job: Deploy
     steps:
     - script: echo Deploying the code!
-  dependsOn: [Test1,Test2]
+  dependsOn: [Build,Test1,Test2]
 
 # jobs:
 #   - job: waitForValidation
