@@ -28,6 +28,7 @@ stages:
   - job: Deploy
     steps:
     - script: echo Deploying the code!
+  dependsOn: [Build,Test]
 # jobs:
 #   - job: waitForValidation
 #     displayName: Wait for external validation
