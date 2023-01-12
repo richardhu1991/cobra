@@ -15,7 +15,13 @@ stages:
   - job: BuildJob
     steps:
     - script: echo Building!
-- stage: Test
+- stage: Test1
+  jobs:
+  - job: TestJob
+    steps:
+    - script: echo Test!
+  dependsOn: [Build]
+- stage: Test2
   jobs:
   - job: TestOnWindows
     steps:
@@ -29,7 +35,6 @@ stages:
   - job: Deploy
     steps:
     - script: echo Deploying the code!
-  dependsOn: [Build]
 
 # jobs:
 #   - job: waitForValidation
