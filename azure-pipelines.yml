@@ -8,29 +8,34 @@ trigger:
 
 pool:
   vmImage: ubuntu-latest
-jobs:
-  - job: BuildJob
-    steps:
-    - script: echo Building!
-  - job: TestJob
-    steps:
-    - script: echo Test!
-  - job: DeployJob
-    steps:
-    - script: echo Deploy!
-# jobs:
-#   - job: waitForValidation
-#     displayName: Wait for external validation
-#     pool: server
-#     timeoutInMinutes: 4320 # job times out in 3 days
-#     steps:
-#     - task: ManualValidation@0
-#       timeoutInMinutes: 1440 # task times out in 1 day
-#       inputs:
-#         notifyUsers: 416482742@qq.com
-#         instructions: 'Please validate the build configuration and resume'
-#         onTimeout: 'resume'
-#   - job: job2
-#     steps:
-#     - script: echo Hello, world!
-#     displayName: 'Run a one-line script'
+stages:
+  - stage: stage-1
+    jobs:
+    - job: task-1
+      steps:
+      - script: echo Building!
+  - stage: stage-2
+    jobs:
+    - job: task-2
+      steps:
+      - script: echo Building!
+  - stage: stage-3
+    jobs:
+    - job: task-3
+      steps:
+      - script: echo Building!
+  - stage: stage-4
+    dependsOn: 
+    - stage-3
+    jobs:
+    - job: task-4
+      steps:
+      - script: echo Building!
+  - stage: stage-5
+    dependsOn:
+    - stage-3
+    - stage-4
+    jobs:
+    - job: task-5
+      steps:
+      - script: echo Building!
