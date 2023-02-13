@@ -15,11 +15,15 @@ stages:
       steps:
       - script: echo Building!
   - stage: stage2
+    dependsOn:
+    - stage1
     jobs:
     - job: task2
       steps:
       - script: echo Building!
   - stage: stage3
+    dependsOn:
+    - stage1
     jobs:
     - job: task3
       steps:
