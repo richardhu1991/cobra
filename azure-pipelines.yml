@@ -37,6 +37,7 @@ stages:
       - script: echo Building!
   - stage: stage5
     dependsOn:
+    - stage1
     - stage3
     - stage4
     jobs:
